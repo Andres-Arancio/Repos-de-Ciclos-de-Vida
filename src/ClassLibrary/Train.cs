@@ -20,6 +20,16 @@ namespace ClassLibrary
         public bool IsEngineStarted { get; private set; }
 
         /// <summary>
+        /// Obtiene cantidad de instancias "Tren" creadas
+        /// </summary>
+        private static int count {get; set;}
+
+        /// <summary>
+        /// Obtiene un identificador para cada instancia de "Tren"
+        /// </summary>
+        private string name {get; set;}
+
+        /// <summary>
         /// Enciende las máquinas del tren.
         /// </summary>
         /// <returns>
@@ -55,6 +65,31 @@ namespace ClassLibrary
 
             Console.Write("The engines are already stopped");
             return this.IsEngineStarted;
+        }
+
+        /// <summary>
+        /// Crea un nuevo tren
+        /// </summary>
+        /// <returns>
+        /// Tren
+        /// </returns>
+        public Train(string constructname)
+        {
+            this.name = constructname;
+            count++;
+            Console.WriteLine($"Trains available: {count}");
+        }
+
+        /// <summary>
+        /// Controla la destruccion de trenes
+        /// </summary>
+        /// <returns>
+        /// void
+        /// </returns>
+        ~Train()
+        {
+            count--;
+            Console.WriteLine("Train destroyed");
         }
     }
 }
